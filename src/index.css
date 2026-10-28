@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --font-manrope: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-clinical-teal: #087f8c;
+  --color-clinical-teal-dark: #066772;
+  --color-clinical-navy: #123047;
+  --color-clinical-tint: #e8f7f6;
+  --color-clinical-canvas: #f7fafc;
+  --color-clinical-surface: #ffffff;
+  --color-clinical-emergency: #c62828;
+  --color-clinical-emergency-dark: #a82222;
+  --color-clinical-success: #23845b;
+  --color-clinical-body: #425466;
+  --color-clinical-border: #e1e8ed;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f7fafc;
+  color: #123047;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Manrope', sans-serif;
+}

@@ -1,0 +1,571 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { FirstAidTopic, HealthTopic, TrustedResource } from '../types/lifelink';
+
+export const LIFELINK_UI_TRANSLATIONS = {
+  en: {
+    siteName: 'LifeLink',
+    tagline: 'Connecting People. Protecting Lives.',
+    nav: {
+      home: 'Home',
+      firstAid: 'First-Aid Learning',
+      emergencyPrep: 'Emergency Preparedness',
+      healthAwareness: 'Health Awareness',
+      language: 'Languages (தமிழ்)',
+      trustedResources: 'Trusted Resources',
+      about: 'About LifeLink',
+    },
+    hero: {
+      headline: 'Health Information Made Easier to Understand',
+      subheadline:
+        'Explore educational resources about first aid, health awareness, and emergency preparedness.',
+      btnExplore: 'Explore Health Guides',
+      btnLearn: 'Learn About LifeLink',
+      searchPlaceholder: 'Search topics (e.g. burns, nosebleed, cuts, hydration, kit)...',
+    },
+    emergencyBanner: {
+      title: 'Need Immediate Emergency Assistance?',
+      desc: 'If someone is in danger or experiencing a life-threatening crisis, call local emergency services immediately.',
+      actionCall: 'Call Emergency: 112 / 108 / 911',
+      disclaimer: 'LifeLink is an educational website prototype for learning and does not replace emergency medical personnel.',
+    },
+    cards: {
+      firstAidTitle: 'First-Aid Education',
+      firstAidDesc: 'Clear, step-by-step guidance for minor cuts, burns, nosebleeds, and choking emergencies.',
+      firstAidBtn: 'Explore 5 First-Aid Guides',
+      prepTitle: 'Emergency Preparedness',
+      prepDesc: 'Essential checklists, emergency supply kits, contact plans, and natural disaster safety tips.',
+      prepBtn: 'View Preparedness Checklists',
+      healthTitle: 'Health Awareness',
+      healthDesc: 'Evidence-based daily habits for hygiene, optimal hydration, ergonomics, and home safety.',
+      healthBtn: 'Discover Wellness Practices',
+    },
+    disclaimer: {
+      title: 'Educational Prototype Disclaimer',
+      text: 'LifeLink is a school science exhibition prototype developed strictly for educational awareness and literacy. It does not provide medical diagnoses, treatment plans, prescriptions, or telemedicine. In acute emergencies, always contact professional emergency medical services (EMS).',
+    },
+    badgeTamilAvailable: 'Tamil Translation Available',
+    badgeUntranslated: 'English Only (Tamil in progress)',
+  },
+  ta: {
+    siteName: 'லைஃப்லிங்க் (LifeLink)',
+    tagline: 'மனிதர்களை இணைத்தல். உயிர்களைக் காத்தல்.',
+    nav: {
+      home: 'முகப்பு',
+      firstAid: 'முதலுதவி கல்வி',
+      emergencyPrep: 'அவசரகால தயார்நிலை',
+      healthAwareness: 'சுகாதார விழிப்புணர்வு',
+      language: 'மொழிகள் (Languages)',
+      trustedResources: 'நம்பகமான வளங்கள்',
+      about: 'லைஃப்லிங்க் பற்றி',
+    },
+    hero: {
+      headline: 'சுகாதாரத் தகவல்கள் எளிமையாகப் புரிந்துகொள்ளும் வகையில்',
+      subheadline:
+        'முதலுதவி, சுகாதார விழிப்புணர்வு மற்றும் அவசரகால தயார்நிலை குறித்த பயனுள்ள கல்வி வளங்களை ஆராயுங்கள்.',
+      btnExplore: 'சுகாதார வழிகாட்டிகளை காண்க',
+      btnLearn: 'லைஃப்லிங்க் பற்றி அறிக',
+      searchPlaceholder: 'தேடுக (எ.கா. தீக்காயம், வெட்டுக்காயம், நீர்ச்சத்து)...',
+    },
+    emergencyBanner: {
+      title: 'உடனடி அவசர உதவி தேவையா?',
+      desc: 'உயிருக்கு ஆபத்தான சூழ்நிலை ஏற்பட்டால் உடனடியாக உங்கள் பகுதியின் அவசர உதவி எண்ணை அழைக்கவும்.',
+      actionCall: 'அழைக்க: 112 / 108 / 911',
+      disclaimer: 'லைஃப்லிங்க் என்பது ஒரு கல்வி முன்மாதிரி; இது அவசர மருத்துவ உதவிக்கு மாற்றாகாது.',
+    },
+    cards: {
+      firstAidTitle: 'முதலுதவி கல்வி',
+      firstAidDesc: 'சிறு வெட்டுக்காயங்கள், தீக்காயங்கள், மூக்கில் ரத்தக்கசிவு மற்றும் மூச்சுத்திணறல் ஆகியவற்றுக்கான படிநிலைகள்.',
+      firstAidBtn: 'முதலுதவி வழிகாட்டிகள்',
+      prepTitle: 'அவசரகால தயார்நிலை',
+      prepDesc: 'அத்தியாவசிய முதலுதவி பெட்டி சரிபார்ப்பு பட்டியல், தொடர்புகள் மற்றும் இயற்கை பேரிடர் பாதுகாப்பு.',
+      prepBtn: 'தயார்நிலை பட்டியல்',
+      healthTitle: 'சுகாதார விழிப்புணர்வு',
+      healthDesc: 'சுத்தம், சரியான நீர்ச்சத்து, நல்ல பழக்கவழக்கங்கள் மற்றும் அன்றாட பாதுகாப்பு முறைகள்.',
+      healthBtn: 'நலவாழ்வு முறைகள்',
+    },
+    disclaimer: {
+      title: 'கல்வி முன்மாதிரி மறுப்புரை',
+      text: 'லைஃப்லிங்க் என்பது பள்ளி அறிவியல் கண்காட்சிக்காக உருவாக்கப்பட்ட ஒரு கல்வி முன்மாதிரி தளம் மட்டுமே. இது மருத்துவ சிகிச்சை அல்லது பரிந்துரைகளை வழங்காது. அவசர காலங்களில் உடனடியாக மருத்துவ அவசர சேவை மையத்தை அழைக்கவும்.',
+    },
+    badgeTamilAvailable: 'தமிழ் மொழிபெயர்ப்பு கிடைக்கிறது',
+    badgeUntranslated: 'ஆங்கிலத்தில் மட்டுமே (தமிழ் மொழிபெயர்ப்பு விரைவில்)',
+  },
+};
+
+export const FIRST_AID_TOPICS: FirstAidTopic[] = [
+  {
+    id: 'minor-cuts',
+    title: 'Minor Cuts, Scrapes & Abrasions',
+    titleTa: 'சிறு வெட்டுக்காயங்கள் மற்றும் சிராய்ப்புகள்',
+    category: 'Wound Care',
+    severity: 'mild',
+    summary: 'Standard first aid for superficial wounds: clean gently, control light bleeding, apply sterile dressing.',
+    summaryTa: 'மேலோட்டமான காயங்களுக்கான முதலுதவி: மென்மையாகக் கழுவுதல், ரத்தக்கசிவை நிறுத்துதல், சுத்தமான கட்டு போடுதல்.',
+    iconName: 'Bandage',
+    isFullyTranslatedTa: true,
+    whatToDo: [
+      {
+        step: 1,
+        title: 'Clean Your Hands',
+        instruction: 'Wash your hands thoroughly with soap and clean running water before touching the injured area to prevent infection.',
+        importantNote: 'Use disposable medical gloves if available.',
+      },
+      {
+        step: 2,
+        title: 'Apply Gentle, Steady Pressure',
+        instruction: 'Press a clean cloth or sterile gauze firmly against the cut until bleeding stops (usually 2 to 5 minutes).',
+        importantNote: 'Keep steady pressure without lifting the cloth repeatedly to peek.',
+      },
+      {
+        step: 3,
+        title: 'Rinse with Cool Tap Water',
+        instruction: 'Hold the wound under cool, gentle running water for 5 minutes to flush away dirt and loose debris.',
+        importantNote: 'Mild soap can be used around the wound; avoid getting soap directly into an open cut.',
+      },
+      {
+        step: 4,
+        title: 'Cover with a Sterile Bandage',
+        instruction: 'Apply an adhesive sterile bandage or gauze pad. Change the dressing daily or whenever it becomes wet or dirty.',
+      },
+    ],
+    whatNotToDo: [
+      'Do not apply harsh chemicals like iodine, hydrogen peroxide, or rubbing alcohol into open wounds (these damage healthy tissue and slow healing).',
+      'Do not scrub the inside of the wound vigorously.',
+      'Do not pick at scabs or remove deeply embedded large objects (leave embedded objects in place and seek medical help).',
+    ],
+    whenToCallEmergency: [
+      'Bleeding does not stop after 10 minutes of direct, continuous pressure.',
+      'The cut is gaping, deep, or exposes fat, muscle, or bone (stitches may be required within 6 to 8 hours).',
+      'The wound is caused by a rusty metal object, animal bite, or human bite (risk of tetanus or severe infection).',
+      'Signs of infection develop: spreading redness, swelling, heat, throbbing pain, or yellow pus.',
+    ],
+    disclaimer: 'This information is for basic educational understanding. Serious, deep, or contaminated wounds require immediate clinical evaluation.',
+  },
+  {
+    id: 'burns',
+    title: 'Thermal Burns (Minor First & Second Degree)',
+    titleTa: 'தீக்காயங்கள் (லேசான மற்றும் மிதமான)',
+    category: 'Thermal Injury',
+    severity: 'moderate',
+    summary: 'Immediate cooling with cool running water is the single most critical intervention for thermal burns.',
+    summaryTa: 'தீக்காயம் ஏற்பட்டவுடன் குளிர்ந்த ஓடும் நீரில் 10-20 நிமிடங்கள் குளிர்விப்பதே மிக முக்கியமான முதலுதவியாகும்.',
+    iconName: 'Flame',
+    isFullyTranslatedTa: true,
+    whatToDo: [
+      {
+        step: 1,
+        title: 'Cool Immediately with Water',
+        instruction: 'Hold the burned area under gentle, cool running tap water for at least 10 to 20 minutes.',
+        importantNote: 'Never use ice or ice water; extreme cold damages delicate skin tissue.',
+      },
+      {
+        step: 2,
+        title: 'Remove Constricting Items',
+        instruction: 'Quickly and gently remove rings, bracelets, watches, or tight clothing around the burn before swelling begins.',
+        importantNote: 'Do NOT remove clothing that is stuck directly to the burned skin.',
+      },
+      {
+        step: 3,
+        title: 'Protect the Burn',
+        instruction: 'Cover the cooled burn loosely with a clean, sterile non-stick bandage or clean cling wrap.',
+        importantNote: 'Do not wrap tightly, as swelling may continue.',
+      },
+      {
+        step: 4,
+        title: 'Manage Discomfort',
+        instruction: 'Keep the burned limb slightly elevated if comfortable to reduce localized swelling.',
+      },
+    ],
+    whatNotToDo: [
+      'Never apply butter, oil, mayonnaise, toothpaste, turmeric paste, or grease to a burn (these trap heat and increase infection risk).',
+      'Never pop or puncture blisters; intact blister skin protects the sterile underlying tissue.',
+      'Never apply ice or freezing cold packs directly to the burn.',
+      'Never pull away clothing that has melted or adhered directly to the skin.',
+    ],
+    whenToCallEmergency: [
+      'The burn is large (larger than the size of the person’s palm).',
+      'The burn is on the face, hands, feet, groin, major joints, or encircles a limb.',
+      'The burn appears white, charred black, or leather-like, or is numb (Third-degree / full-thickness burn).',
+      'The burn was caused by chemicals, high-voltage electricity, or smoke inhalation in an enclosed space.',
+    ],
+    disclaimer: 'Burns covering large areas or affecting sensitive anatomical zones must be evaluated immediately in an emergency department or burn unit.',
+  },
+  {
+    id: 'nosebleeds',
+    title: 'Nosebleeds (Epistaxis)',
+    titleTa: 'மூக்கில் ரத்தக்கசிவு',
+    category: 'Respiratory / ENT',
+    severity: 'mild',
+    summary: 'Correct posture: lean forward slightly and pinch the soft part of the nose continuously for 10 to 15 minutes.',
+    summaryTa: 'சரியான முறை: சற்று முன்னோக்கி குனிந்து, மூக்கின் மென்மையான பகுதியை 10-15 நிமிடங்கள் விடாமல் அழுத்திப் பிடிக்கவும்.',
+    iconName: 'Droplets',
+    isFullyTranslatedTa: true,
+    whatToDo: [
+      {
+        step: 1,
+        title: 'Sit Upright and Lean FORWARD',
+        instruction: 'Sit down and tilt your head slightly forward. Leaning forward prevents blood from draining down the back of your throat.',
+        importantNote: 'Tilting your head backward causes blood swallowing, nausea, and possible airway irritation.',
+      },
+      {
+        step: 2,
+        title: 'Pinch the Soft Part of the Nose',
+        instruction: 'Use your thumb and index finger to firmly pinch together the soft flesh of both nostrils just below the bony bridge.',
+        importantNote: 'Breathe calmly through your mouth while pinching.',
+      },
+      {
+        step: 3,
+        title: 'Hold for 10 to 15 Full Minutes',
+        instruction: 'Maintain continuous, uninterrupted pressure for at least 10 to 15 minutes without releasing to check.',
+        importantNote: 'Use a timer or clock; releasing too early tears the fresh fibrin clot.',
+      },
+      {
+        step: 4,
+        title: 'Rest Quietly Afterward',
+        instruction: 'After bleeding stops, avoid blowing your nose, picking, or strenuous bending over for at least several hours.',
+      },
+    ],
+    whatNotToDo: [
+      'Never tilt the head backward (this causes blood to enter the stomach or trachea).',
+      'Never pack tissue paper or dry cotton deep inside the nostrils (removing dry cotton pulls off the newly formed clot).',
+      'Do not lie down flat while bleeding is active.',
+    ],
+    whenToCallEmergency: [
+      'Bleeding continues for more than 20 minutes despite continuous, firm pinching.',
+      'The nosebleed follows a severe head trauma, car crash, or heavy blow to the face.',
+      'The person feels dizzy, faint, lightheaded, or is vomiting swallowed blood.',
+      'The individual is taking blood-thinning medications (anticoagulants) and bleeding is heavy.',
+    ],
+    disclaimer: 'Frequent, unexplained nosebleeds or those accompanied by unexplained bruising warrant discussion with a physician.',
+  },
+  {
+    id: 'choking',
+    title: 'Choking in Conscious Adults & Children',
+    titleTa: 'மூச்சுத்திணறல் (தொண்டையில் உணவு அடைத்தல்)',
+    category: 'Acute Airway Emergency',
+    severity: 'urgent',
+    summary: 'Recognize the universal choking sign: deliver 5 forceful back blows followed by 5 quick abdominal thrusts (Heimlich).',
+    summaryTa: 'முக்கிய முதலுதவி: 5 முறை முதுகில் தட்டுதல் மற்றும் 5 முறை வயிற்றுப் பகுதியில் மேல்நோக்கி அழுத்துதல் (ஹெய்ம்லிச் முறை).',
+    iconName: 'ShieldAlert',
+    isFullyTranslatedTa: true,
+    whatToDo: [
+      {
+        step: 1,
+        title: 'Assess Severity Immediately',
+        instruction: 'Ask: "Are you choking?" If they can speak, cough forcefully, or breathe, encourage them to keep coughing. If they cannot speak or breathe, act immediately.',
+        importantNote: 'Do not interfere if the person is coughing forcefully on their own.',
+      },
+      {
+        step: 2,
+        title: 'Deliver 5 Back Blows',
+        instruction: 'Stand to the side and slightly behind them. Support their chest with one hand and lean them forward at the waist. Give 5 sharp blows between the shoulder blades with the heel of your other hand.',
+      },
+      {
+        step: 3,
+        title: 'Deliver 5 Abdominal Thrusts',
+        instruction: 'Stand behind the person, wrap arms around their waist. Make a fist with thumb side against their abdomen just above the navel. Grasp fist with your other hand and pull sharply inward and upward.',
+        importantNote: 'Repeat alternating 5 back blows and 5 abdominal thrusts until the object is expelled.',
+      },
+      {
+        step: 4,
+        title: 'If the Person Becomes Unresponsive',
+        instruction: 'Carefully lower them to the floor, shout for someone to call 112/911 and bring an AED, and begin CPR chest compressions immediately.',
+      },
+    ],
+    whatNotToDo: [
+      'Do not slap the back of someone who is coughing effectively (this can lodge the object deeper).',
+      'Do not perform blind finger sweeps in the mouth (you might push the foreign object further down).',
+      'Do not perform abdominal thrusts on infants under 1 year (infants require 5 gentle back slaps and 5 two-finger chest thrusts).',
+    ],
+    whenToCallEmergency: [
+      'The choking person cannot breathe, make sound, or turn cyanotic (blue/gray around lips).',
+      'The obstruction is not cleared after the first cycle of back blows and thrusts.',
+      'The person loses consciousness.',
+      'Anyone who receives abdominal thrusts should still be evaluated at a hospital to rule out internal injuries.',
+    ],
+    disclaimer: 'Airway obstruction is an acute life emergency. Always designate a bystander to contact emergency dispatch while first aid is in progress.',
+  },
+  {
+    id: 'general-prep',
+    title: 'General Emergency Preparedness & Basic CPR',
+    titleTa: 'பொது அவசரகால தயார்நிலை & அடிப்படை சிபிஆர்',
+    category: 'Life Support',
+    severity: 'urgent',
+    summary: 'Recognize unresponsive collapse, alert emergency services, and provide continuous 100-120 BPM chest compressions.',
+    summaryTa: 'சுயநினைவற்ற நிலையை கண்டறிந்து, அவசர எண்ணை அழைத்து, நிமிடத்திற்கு 100-120 முறை நெஞ்சில் தொடர்ச்சியாக அழுத்துதல்.',
+    iconName: 'HeartPulse',
+    isFullyTranslatedTa: true,
+    whatToDo: [
+      {
+        step: 1,
+        title: 'Check Responsiveness & Breathing',
+        instruction: 'Tap both shoulders firmly and shout loudly: "Are you okay?" Look at the chest for 5 to 10 seconds for normal breathing.',
+        importantNote: 'Irregular gasping (agonal breaths) is NOT normal breathing and indicates cardiac arrest.',
+      },
+      {
+        step: 2,
+        title: 'Call Emergency Services (112 / 108 / 911)',
+        instruction: 'Point to a specific person: "You, call 112 right now, get an AED, and put the phone on speaker!"',
+      },
+      {
+        step: 3,
+        title: 'Push Hard and Fast (Hands-Only CPR)',
+        instruction: 'Place heel of hand in center of chest, interlock fingers, keep elbows locked. Push down 2 to 2.4 inches (5-6 cm) at 100 to 120 beats per minute.',
+        importantNote: 'Allow full chest recoil between every push. Continue until paramedics or an AED arrives.',
+      },
+    ],
+    whatNotToDo: [
+      'Do not hesitate to start chest compressions; performing CPR on someone in cardiac arrest cannot make their condition worse.',
+      'Do not interrupt chest compressions for more than 10 seconds.',
+      'Do not leave the person alone if you are the only responder; call emergency services on speaker while starting CPR.',
+    ],
+    whenToCallEmergency: [
+      'Person is unresponsive and not breathing normally.',
+      'Chest pain with shortness of breath, pain radiating to left arm or jaw.',
+      'Sudden facial droop, arm weakness, or difficulty speaking (Stroke).',
+    ],
+    disclaimer: 'Hands-only CPR can double or triple a person’s chance of survival. Learning hands-on in a certified CPR course is highly recommended.',
+  },
+];
+
+export const HEALTH_AWARENESS_TOPICS: HealthTopic[] = [
+  {
+    id: 'hygiene',
+    title: 'Hygiene & Infection Prevention',
+    titleTa: 'சுத்தம் மற்றும் தொற்றுநோய் தடுப்பு',
+    category: 'hygiene',
+    tagline: 'Effective hand hygiene breaks 80% of common pathogen transmission pathways.',
+    taglineTa: 'சரியான கை கழுவும் பழக்கம் 80% தொற்றுநோய்கள் பரவுவதை தடுக்கிறது.',
+    iconName: 'Sparkles',
+    isFullyTranslatedTa: true,
+    keyPractices: [
+      {
+        title: 'The 20-Second Handwash Technique',
+        description: 'Lather with soap and scrub palms, backs of hands, between fingers, thumbs, and fingernails for at least 20 seconds before rinsing.',
+      },
+      {
+        title: 'Crucial Moments for Hand Hygiene',
+        description: 'Always wash hands before eating, after using the washroom, after coughing/sneezing, and after handling shared classroom surfaces.',
+      },
+      {
+        title: 'Respiratory Etiquette',
+        description: 'Cough or sneeze into the crook of your elbow or into a tissue that you discard immediately into a closed bin.',
+      },
+    ],
+    quickTip: 'Singing the "Happy Birthday" song twice takes approximately 20 seconds — the ideal handwashing duration.',
+  },
+  {
+    id: 'hydration',
+    title: 'Hydration & Fluid Balance',
+    titleTa: 'நீர்ச்சத்து மற்றும் உடல் சமநிலை',
+    category: 'hydration',
+    tagline: 'Water comprises ~60% of human body mass and is essential for cellular homeostasis, cognitive focus, and thermoregulation.',
+    taglineTa: 'மனித உடலில் சுமார் 60% நீர் உள்ளது; இது உடல் நலம் மற்றும் கவனத்திற்கு அவசியமானது.',
+    iconName: 'Droplets',
+    isFullyTranslatedTa: true,
+    keyPractices: [
+      {
+        title: 'Recommended Daily Intake',
+        description: 'School-aged children generally require 1.5 to 2 liters of water daily, while active adolescents and adults need 2.5 to 3.5 liters, adjusted for temperature and physical activity.',
+      },
+      {
+        title: 'Recognizing Mild Dehydration',
+        description: 'Signs include dry lips, mild headache, fatigue, difficulty concentrating in class, and dark yellow urine.',
+      },
+      {
+        title: 'Electrolyte Balance in Hot Weather',
+        description: 'In warm climates or during sports, consume oral rehydration salts (ORS) or diluted natural fruit fluids alongside clean water to replenish sodium and potassium.',
+      },
+    ],
+    quickTip: 'Pale straw-colored urine indicates healthy hydration. Deep amber or dark yellow indicates you need water immediately.',
+  },
+  {
+    id: 'habits',
+    title: 'Healthy Daily Habits for Students',
+    titleTa: 'மாணவர்களுக்கான ஆரோக்கியமான அன்றாட பழக்கங்கள்',
+    category: 'habits',
+    tagline: 'Consistent restorative sleep, balanced whole nutrition, and active movement form the foundation of lifelong health.',
+    taglineTa: 'முறையான தூக்கம், சத்தான உணவு மற்றும் தினசரி உடற்பயிற்சி ஆரோக்கியத்தின் அடித்தளமாகும்.',
+    iconName: 'Smile',
+    isFullyTranslatedTa: true,
+    keyPractices: [
+      {
+        title: 'Consistent Sleep Schedule',
+        description: 'Children and teens need 8 to 10 hours of restorative sleep each night. Keep bedrooms dark and screens turned off 45 minutes before bedtime.',
+      },
+      {
+        title: 'Balanced Nutritional Variety',
+        description: 'Fill half your plate with colorful vegetables and fruits, one quarter with whole grains, and one quarter with healthy proteins (lentils, beans, eggs, nuts).',
+      },
+      {
+        title: 'Daily Moderate Physical Activity',
+        description: 'Aim for at least 60 minutes of moderate-to-vigorous physical activity every day (brisk walking, cycling, outdoor games, yoga).',
+      },
+    ],
+    quickTip: 'Small daily positive choices create lasting neurological habits. Focus on consistency rather than perfection.',
+  },
+  {
+    id: 'safety',
+    title: 'Basic Health & Everyday Safety',
+    titleTa: 'அடிப்படை சுகாதாரம் மற்றும் அன்றாட பாதுகாப்பு',
+    category: 'safety',
+    tagline: 'Ergonomic study postures, UV protection, and home hazard awareness prevent long-term musculoskeletal and sensory damage.',
+    taglineTa: 'சரியான அமரும் முறை மற்றும் சூரிய பாதுகாப்பு நீண்டகால நன்மைகளைத் தருகிறது.',
+    iconName: 'Shield',
+    isFullyTranslatedTa: true,
+    keyPractices: [
+      {
+        title: 'Ergonomic Study & Screen Posture',
+        description: 'Keep screens at eye level to prevent "text neck." Follow the 20-20-20 rule: every 20 minutes, look at an object 20 feet away for 20 seconds.',
+      },
+      {
+        title: 'Sun Protection & UV Awareness',
+        description: 'Wear wide-brim hats, light-colored cotton clothing, and apply broad-spectrum SPF 30+ sunscreen when outdoors during peak UV hours (10 AM to 3 PM).',
+      },
+      {
+        title: 'Safe School Backpack Weight',
+        description: 'A loaded backpack should never exceed 10% to 15% of the student’s body weight to prevent spinal compression and shoulder strain.',
+      },
+    ],
+    quickTip: 'Adjust both shoulder straps evenly so your backpack rests against the middle of your back, not dangling low on your hips.',
+  },
+  {
+    id: 'prevention',
+    title: 'Preventive Safety Practices at Home & School',
+    titleTa: 'பள்ளி மற்றும் வீட்டில் தடுப்பு பாதுகாப்பு முறைகள்',
+    category: 'prevention',
+    tagline: 'Proactive hazard identification and emergency preparedness prevent avoidable injuries.',
+    taglineTa: 'முன்கூட்டியே ஆபத்துகளை கண்டறிந்து தவிர்ப்பதன் மூலம் விபத்துகளைத் தடுக்கலாம்.',
+    iconName: 'CheckCircle',
+    isFullyTranslatedTa: true,
+    keyPractices: [
+      {
+        title: 'Safe Storage of Medicines & Cleaning Chemicals',
+        description: 'Always store household chemicals, disinfectants, and pharmaceutical drugs in original labeled containers in locked, childproof cabinets.',
+      },
+      {
+        title: 'Fire Safety & Clear Exit Routes',
+        description: 'Know two exit pathways from every room in your home and school. Keep staircases and corridors completely free of clutter.',
+      },
+      {
+        title: 'Electrical Safety Precautions',
+        description: 'Never pull cords from wall outlets by the wire, do not touch switches with wet hands, and keep water away from electrical appliances.',
+      },
+    ],
+    quickTip: 'Conduct a 5-minute home safety audit once every month to identify loose wires, wet floor hazards, and expired emergency items.',
+  },
+];
+
+export const TRUSTED_RESOURCES: TrustedResource[] = [
+  {
+    id: 'who',
+    name: 'World Health Organization (WHO)',
+    jurisdiction: 'Global / United Nations',
+    category: 'International Public Health Authority',
+    description: 'Directing and coordinating authority on international health work within the United Nations system, publishing validated guidelines on disease prevention, first aid, and health equity.',
+    url: 'https://www.who.int',
+    verificationBadge: 'Verified Global Health Authority',
+  },
+  {
+    id: 'red-cross-india',
+    name: 'Indian Red Cross Society (IRCS)',
+    jurisdiction: 'India (National)',
+    category: 'First Aid & Disaster Relief',
+    description: 'A voluntary humanitarian organization providing relief during disasters/emergencies and promoting first-aid training, blood services, and community healthcare across India.',
+    url: 'https://www.indianredcross.org',
+    verificationBadge: 'Statutory Humanitarian Organization',
+  },
+  {
+    id: 'mohfw',
+    name: 'Ministry of Health and Family Welfare (MoHFW)',
+    jurisdiction: 'Government of India',
+    category: 'National Health Ministry',
+    description: 'Official Indian government ministry overseeing healthcare policy, public immunization programs, emergency response protocols, and national health literacy.',
+    url: 'https://www.mohfw.gov.in',
+    verificationBadge: 'Official Government Health Portal',
+  },
+  {
+    id: 'american-red-cross',
+    name: 'American Red Cross',
+    jurisdiction: 'United States & Global Standards',
+    category: 'First Aid & Resuscitation Standards',
+    description: 'Co-developer of the Scientific Advisory Council first-aid and CPR guidelines alongside the American Heart Association (AHA).',
+    url: 'https://www.redcross.org',
+    verificationBadge: 'Recognized First-Aid Standard Developer',
+  },
+  {
+    id: 'cdc',
+    name: 'Centers for Disease Control and Prevention (CDC)',
+    jurisdiction: 'United States & Global Science',
+    category: 'Public Health & Disease Prevention',
+    description: 'Science-based public health institute providing accessible guides on hygiene, injury prevention, environmental safety, and natural disaster preparedness.',
+    url: 'https://www.cdc.gov',
+    verificationBadge: 'Verified Public Health Agency',
+  },
+  {
+    id: 'st-john-ambulance',
+    name: 'St John Ambulance',
+    jurisdiction: 'United Kingdom & Commonwealth',
+    category: 'First Aid Education & Clinical Protocols',
+    description: 'Historic volunteer first-aid organization providing clear, peer-reviewed emergency advice on choking, burns, bleeding, and recovery positions.',
+    url: 'https://www.sja.org.uk',
+    verificationBadge: 'Accredited First-Aid Training Charity',
+  },
+];
+
+export const EMERGENCY_NUMBERS = [
+  {
+    code: '112',
+    name: 'National Unified Emergency Number',
+    region: 'India & European Union',
+    coverage: 'All Emergencies (Ambulance, Police, Fire)',
+    speedDial: 'tel:112',
+  },
+  {
+    code: '108',
+    name: 'Free Emergency Medical & Disaster Ambulance',
+    region: 'India (Toll-Free)',
+    coverage: 'Acute Medical Emergencies & Trauma Dispatch',
+    speedDial: 'tel:108',
+  },
+  {
+    code: '911',
+    name: 'Public Safety Emergency Service',
+    region: 'United States & Canada',
+    coverage: 'Paramedics, Police & Fire Services',
+    speedDial: 'tel:911',
+  },
+  {
+    code: '102',
+    name: 'Maternal & Child Transport Ambulance',
+    region: 'India (Toll-Free)',
+    coverage: 'Specialized Pregnancy & Neonatal Healthcare',
+    speedDial: 'tel:102',
+  },
+  {
+    code: '101',
+    name: 'Fire & Rescue Services',
+    region: 'India',
+    coverage: 'Structural Fires & Hazard Extrication',
+    speedDial: 'tel:101',
+  },
+];
+
+export const EMERGENCY_KIT_ITEMS = [
+  { id: 'k1', name: 'Sterile Gauze Pads (Various Sizes)', category: 'Wound Dressing', essential: true },
+  { id: 'k2', name: 'Adhesive Bandages (Assorted Strip Sizes)', category: 'Wound Dressing', essential: true },
+  { id: 'k3', name: 'Adhesive Cloth Tape (1 inch roll)', category: 'Fastening', essential: true },
+  { id: 'k4', name: 'Elastic Crepe Bandage (for sprains/swelling)', category: 'Support', essential: true },
+  { id: 'k5', name: 'Antiseptic Cleansing Wipes (Alcohol-Free)', category: 'Cleaning', essential: true },
+  { id: 'k6', name: 'Medical Scissors & Tweezers (Stainless steel)', category: 'Instruments', essential: true },
+  { id: 'k7', name: 'Disposable Medical Gloves (Latex/Nitrile, 2 pairs)', category: 'Barrier Protection', essential: true },
+  { id: 'k8', name: 'Digital Clinical Thermometer', category: 'Diagnostics', essential: true },
+  { id: 'k9', name: 'Emergency Mylar Foil Blanket (Retains body heat)', category: 'Thermal Care', essential: true },
+  { id: 'k10', name: 'Sterile Saline Solution (for eye and wound rinse)', category: 'Irrigation', essential: true },
+  { id: 'k11', name: 'Oral Rehydration Salts (ORS packets)', category: 'Hydration', essential: false },
+  { id: 'k12', name: 'Waterproof Flashlight with Extra Batteries', category: 'Emergency Utility', essential: false },
+];

@@ -1,0 +1,6 @@
+{
+  "name": "Clinical Clarity & Reassurance",
+  "description": "Interactive Emergency Protocols and School Health Exhibition Kiosk with real-time CPR rhythm metronome, FAST stroke triage, and emergency response guides.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
